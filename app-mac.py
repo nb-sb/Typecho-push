@@ -7,8 +7,12 @@ import time
 import re
 from pynput.keyboard import  Controller
 import pyperclip as pc
+
+dir_path = str(input("输入你的文件目录："))
+time.sleep(5)
 def copy_image_to_clipboard(file_path):
     # 检查文件是否存在
+    file_path = dir_path + file_path
     if not os.path.exists(file_path):
         print(f"文件 '{file_path}' 不存在")
         return
@@ -39,7 +43,7 @@ def paste_image_to_textbox():
 
 # 从文件中读取文本内容
 # 获取当前文件夹中所有的 .md 文件
-md_files = glob.glob('*.md')
+md_files = glob.glob(dir_path+'*.md')
 # file_path = '设计模式-day01.md'
 with open(md_files[0], 'r', encoding='utf-8') as file:
     text = file.read()
