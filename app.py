@@ -2,11 +2,8 @@ import re
 import time
 from pynput.keyboard import Key, Controller
 from PIL import Image
-import win32clipboard
-from io import BytesIO
 from io import BytesIO
 import win32clipboard
-from PIL import Image
 import pyperclip as pc
 import time
 import pyautogui
