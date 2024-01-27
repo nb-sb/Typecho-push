@@ -46,8 +46,10 @@ md_files = glob.glob(dir_path+'*.md')
 with open(md_files[0], 'r', encoding='utf-8') as file:
     text = file.read()
 
+# # 使用正则表达式定义分隔符
+# split_pattern = r'(?:\!\[.*?\]\(.*?\)|<img.*?src=["\'](.*?)["\'].*?>)'
 # 使用正则表达式定义分隔符
-split_pattern = r'(?:\!\[.*?\]\(.*?\)|<img.*?src=["\'](.*?)["\'].*?>)'
+split_pattern = r'(?:\!\[.*?\]\((.*?)\)|<img.*?src=["\'](.*?)["\'].*?>)'
 
 # 使用正则表达式进行分割
 split_texts = re.split(split_pattern, text)
@@ -61,6 +63,11 @@ text_list = []
 image_urls = []
 image_count_list = []  # 保存每个文本后的图片数量
 def is_image_file(filename):
+     # 检查文件是否存在
+    file_path = dir_path + filename
+    if not os.path.exists(file_path):
+        print(f"文件 '{file_path}' 不存在")
+        return False
     image_extensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp']
 
     # 正则表达式匹配文件名是否以图片扩展名结尾
@@ -117,7 +124,7 @@ for index, part in enumerate(text_list):
     time.sleep(1)
     # 调用函数执行粘贴操作
     paste_image_to_textbox()
-    # pyautogui.hotkey("ctrl", "v")
+    time.sleep(1)
     if index < len(image_urls):
         for ii in range(image_count_list[index]):
             copy_image_to_clipboard(image_urls[index+ii])
