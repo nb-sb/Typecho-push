@@ -1,0 +1,1 @@
+可以将本地markdown文件复制到typecho粘贴板中，并且支持typecho自动上传（可能需要将typecho的上传弹窗关闭）
